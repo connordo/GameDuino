@@ -14,76 +14,90 @@ testGame::testGame() {
 void testGame::tick(Adafruit_SSD1306 display) {
   switch (currentState) {
     case  init_st:
-      // Serial.println("init_st");
-      break;
+    // Serial.println("init_st");
+    break;
 
     case welcome_st:
-      // Serial.println("welcome_st");
-      timer++;
-      break;
+    // Serial.println("welcome_st");
+    timer++;
+    break;
 
     case  menu_st:
-      // Serial.println("menu_st");
-      break;
+    // Serial.println("menu_st");
+    break;
 
     case  idle_st:
-      // Serial.println("idle_st");
-      break;
+    // Serial.println("idle_st");
+    break;
 
     case  move_l_st:
-      // Serial.println("move_l_st");
-      break;
+    // Serial.println("move_l_st");
+    break;
 
     case  move_r_st:
-      // Serial.println("move_r_st");
-      break;
+    // Serial.println("move_r_st");
+    break;
   }
 
   switch (currentState) {
     case  init_st:
-      welcomeScreen(display);
-      timer = 0;
-      currentState = welcome_st;
-      break;
+    welcomeScreen(display);
+    timer = 0;
+    currentState = welcome_st;
+    break;
     case welcome_st:
-      if (timer >= 100) {
-        display.clearDisplay();
-        display.display();
-       menuScreen(display);
+    if (timer >= 100) {
+      display.clearDisplay();
+      display.display();
+      menuScreen(display);
 
-        currentState = menu_st;
-      }
-      break;
+      currentState = menu_st;
+    }
+    break;
     case  menu_st:
-      if (buttons_readAll()&BITMASK_BTN_A) {
-        display.clearDisplay();
-        display.display();
-        xpos = 0;
-        ypos = 63;
-        drawDinoRight(display, xpos, ypos, WHITE);
+    if (buttons_readAll()&BITMASK_BTN_A) {
+      display.clearDisplay();
+      display.display();
+      xpos = 0;
+      ypos = 63;
+      direction = 1;
+      drawOrangeRight(display, xpos, ypos, WHITE);
 
-        currentState = idle_st;
-      }
-      break;
+      currentState = idle_st;
+    }
+    break;
     case  idle_st:
-      if (buttons_readAll()&BITMASK_BTN_LEFT) {
-        if (xpos > 0) {
-          drawDinoRight(display, xpos, ypos, BLACK);
-          drawDinoRight(display, --xpos, ypos, WHITE);
+    if (buttons_readAll()&BITMASK_BTN_LEFT) {
+      if (xpos > 0) {
+        if(direction > 0){
+          drawOrangeRight(display, xpos, ypos, BLACK);
         }
-      }
-      if (buttons_readAll()&BITMASK_BTN_RIGHT) {
-        if (xpos < 117) {
-          drawDinoRight(display, xpos, ypos, BLACK);
-          drawDinoRight(display, ++xpos, ypos, WHITE);
+        else if(direction < 0){
+          drawOrangeLeft(display, xpos, ypos, BLACK);
         }
+        drawOrangeLeft(display, --xpos, ypos, WHITE);
+        direction = -1;
       }
-      break;
+    }
+    if (buttons_readAll()&BITMASK_BTN_RIGHT) {
+      if (xpos < 117) {
+
+        if(direction > 0){
+          drawOrangeRight(display, xpos, ypos, BLACK);
+        }
+        else if(direction < 0){
+          drawOrangeLeft(display, xpos, ypos, BLACK);
+        }
+        drawOrangeRight(display, ++xpos, ypos, WHITE);
+        direction = 1;
+      }
+    }
+    break;
     case  move_l_st:
 
-      break;
+    break;
     case  move_r_st:
 
-      break;
+    break;
   }
 }

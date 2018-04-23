@@ -61,7 +61,7 @@ void testGame::tick(Adafruit_SSD1306 display) {
       xpos = 0;
       ypos = 63;
       direction = 1;
-      drawOrangeRight(display, xpos, ypos, WHITE);
+      drawYoshiRight(display, xpos, ypos, WHITE);
 
       currentState = idle_st;
     }
@@ -70,12 +70,12 @@ void testGame::tick(Adafruit_SSD1306 display) {
     if (buttons_readAll()&BITMASK_BTN_LEFT) {
       if (xpos > 0) {
         if(direction > 0){
-          drawOrangeRight(display, xpos, ypos, BLACK);
+          drawYoshiRight(display, xpos, ypos, BLACK);
         }
         else if(direction < 0){
-          drawOrangeLeft(display, xpos, ypos, BLACK);
+          drawYoshiLeft(display, xpos, ypos, BLACK);
         }
-        drawOrangeLeft(display, --xpos, ypos, WHITE);
+        drawYoshiLeft(display, --xpos, ypos, WHITE);
         direction = -1;
       }
     }
@@ -83,12 +83,12 @@ void testGame::tick(Adafruit_SSD1306 display) {
       if (xpos < 117) {
 
         if(direction > 0){
-          drawOrangeRight(display, xpos, ypos, BLACK);
+          drawYoshiRight(display, xpos, ypos, BLACK);
         }
         else if(direction < 0){
-          drawOrangeLeft(display, xpos, ypos, BLACK);
+          drawYoshiLeft(display, xpos, ypos, BLACK);
         }
-        drawOrangeRight(display, ++xpos, ypos, WHITE);
+        drawYoshiRight(display, ++xpos, ypos, WHITE);
         direction = 1;
       }
     }

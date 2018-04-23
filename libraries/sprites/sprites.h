@@ -16,5 +16,7 @@ void drawSpaceShip(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t C
 void drawpixelman(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t COLOR);
 void drawOrangeRight(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t COLOR);
 void drawOrangeLeft(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t COLOR);
+void drawYoshiRight(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t COLOR);
+void drawYoshiLeft(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t COLOR);
 
 #endif // _SPRITES_H

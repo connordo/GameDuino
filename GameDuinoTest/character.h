@@ -7,6 +7,10 @@
 class character {
     int x_position;
     int y_position;
+    int x_direction;
+    int y_direction;
+    int speed;
+    
     character();
     drawSprite(Adafruit_SSD1306 display, int x, int y);
     eraseSprite(Adafruit_SSD1306 display);

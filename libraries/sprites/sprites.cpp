@@ -614,7 +614,8 @@ void drawYoshiRight(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t 
   display.drawPixel(x + 11, y - 15, COLOR);
   display.drawPixel(x + 9, y - 16, COLOR);
   display.drawPixel(x + 10, y - 16, COLOR);
-  display.display();
+  
+  if(COLOR == WHITE) display.display();
 }
 
 void drawYoshiLeft(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t COLOR) {
@@ -717,5 +718,5 @@ void drawYoshiLeft(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t C
   display.drawPixel(x + 8, y - 15, COLOR);
   display.drawPixel(x + 5, y - 16, COLOR);
   display.drawPixel(x + 6, y - 16, COLOR);
-  display.display();
+  if(COLOR == WHITE) display.display();
 }

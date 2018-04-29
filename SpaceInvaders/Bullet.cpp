@@ -1,17 +1,16 @@
-#include "Spaceship.h"
+#include "Bullet.h"
 
-static const unsigned char PROGMEM Spaceship::sprite_bmp[]=
+static const unsigned char PROGMEM Bullet::sprite_bmp[]=
 {
-0b00000100, 0b00000000, 0b00001110, 0b00000000, 0b00001110, 0b00000000, 0b00001110, 0b00000000, 0b01111111, 0b11000000, 0b11111111, 0b11100000, 0b01101110, 0b11000000, 0b00101010, 0b10000000,
+0b10000000, 0b10000000, 0b10000000, 0b10000000,
 };
 
-Spaceship::Spaceship(int init_x_pos, int init_y_pos)
-:Entity(init_x_pos,init_y_pos){
-  height = 8;
-  width = 16;
+Bullet::Bullet(int init_x_pos, int init_y_pos):Entity(init_x_pos,init_y_pos){
+  height = 4;
+  width = 8;
 }
 
-void Spaceship::move(Adafruit_SSD1306 display, int d){
+void Bullet::move(Adafruit_SSD1306 display, int d){
     display.drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
     switch(d){
         case 0:
@@ -29,7 +28,12 @@ void Spaceship::move(Adafruit_SSD1306 display, int d){
     }
     display.display();
 }
-
-void Spaceship::draw(Adafruit_SSD1306 display){
+void Bullet::forceMove(Adafruit_SSD1306 display, int x, int y){
+  display.drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
+  x_pos = x;
+  y_pos = y;
+  display.drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
+}
+void Bullet::draw(Adafruit_SSD1306 display){
     display.drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
 }

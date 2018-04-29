@@ -62,12 +62,12 @@ static const unsigned char PROGMEM SpaceShipBitmap[] =
 
 static const unsigned char PROGMEM testy[]=
 {
-0b00000100, 0b00000001, 0b11000000, 0b00111000, 0b00000111, 0b00000111, 0b11111101, 0b11111111, 0b11011011, 0b10110001, 0b01010100,
+0b00000100, 0b00000000, 0b00001110, 0b00000000, 0b00001110, 0b00000000, 0b00001110, 0b00000000, 0b01111111, 0b11000000, 0b11111111, 0b11100000, 0b01101110, 0b11000000, 0b00101010, 0b10000000,
 };
 void setup() {
   display.begin(SSD1306_SWITCHCAPVCC);
   display.clearDisplay();
-  display.drawBitmap(0, 0, testy, 11, 8, WHITE);
+  display.drawBitmap(0, 0, testy, 16, 8, WHITE);
   display.display();
 }
 

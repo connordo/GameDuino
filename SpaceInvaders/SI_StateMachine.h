@@ -4,10 +4,12 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include "Spaceship.h"
+#include "Bullet.h"
 
 class SI_StateMachine{
 public:
   Spaceship *user;
+  Bullet *shot;
 
   enum SI_state{
     init_st,

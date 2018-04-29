@@ -9,8 +9,14 @@
 class SI_StateMachine{
 public:
   Spaceship *user;
-  Bullet *shot;
-
+  Bullet shot[5] = {
+ Bullet(0,-10),
+ Bullet(10,-10),
+ Bullet(20,-10),
+ Bullet(30,-10),
+ Bullet(40,-10)
+};
+  int bulletIndex;
   enum SI_state{
     init_st,
     idle_st

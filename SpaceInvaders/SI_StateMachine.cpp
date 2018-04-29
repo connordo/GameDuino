@@ -4,7 +4,7 @@
 SI_StateMachine::SI_StateMachine(){
   currentState = init_st;
   user = new Spaceship((128/2)-4, 64-8);
-  shot = new Bullet(0,-10);
+  bulletIndex = 0;
 }
 
 SI_StateMachine::tick(Adafruit_SSD1306 display){
@@ -15,8 +15,10 @@ SI_StateMachine::tick(Adafruit_SSD1306 display){
     display.display();
     break;
     case idle_st:
-    if(shot->get_y_pos()>-4){
-      shot->move(display, 0);
+    for(int i = 0;i < 5; i++){
+      if(shot[i].get_y_pos()>-4){
+        shot[i].move(display, 0);
+      }
     }
     break;
   }
@@ -36,7 +38,14 @@ SI_StateMachine::tick(Adafruit_SSD1306 display){
       user->move(display, 3);
     }
     if(buttons_readAll() & BITMASK_BTN_A){
-      shot->forceMove(display, user->get_x_pos()+5, user->get_y_pos()-4);
+      if(shot[bulletIndex-1].get_y_pos() < user->get_y_pos()-10){
+        shot[bulletIndex].forceMove(display, user->get_x_pos()+5, user->get_y_pos()-4);
+        if(bulletIndex==4)
+          bulletIndex=0;
+        else
+          bulletIndex++;
+
+      }
     }
     break;
   }

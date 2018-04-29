@@ -2,8 +2,18 @@
 #include "bitmap_image.hpp"
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 
 using namespace std;
+
+void writeBufferToConsole(std::vector<int> v){
+  if(v.size()==8)
+  cout << "0b";
+  for(int i = 0; i < 8; i++){
+    cout << v.at(i);
+  }
+  cout << ", ";
+}
 
 int main(int argc, char** argv)
 {
@@ -29,20 +39,31 @@ int main(int argc, char** argv)
   cout << "image width:  " << image.width() << endl;
 
   cout << "\n\n\n" << endl;
-  cout << "void draw" << spriteName << "(Adafruit_SSD1306 display, uint16_t x, uint16_t y , uint16_t COLOR) {" << endl;
-
-  for (int y = height-1; y >=0; y--)
+  cout << "static const unsigned char PROGMEM " << spriteName << "[]=\n{ " << endl;
+  std::vector<int> v;
+  v.clear();
+  for (int y = 0; y < height; y++)
   {
     for (int x = 0; x < width; x++)
     {
       rgb_t colour;
       image.get_pixel(x, y, colour);
-      if(colour.red < 100){
-        cout << "\tdisplay.drawPixel(x + " << x << ", y - " << height - y << ", COLOR);" << endl;
+      if(colour.red < 100)
+      v.push_back(1);
+      else
+      v.push_back(0);
+      if(v.size()==8){
+        writeBufferToConsole(v);
+        v.clear();
       }
     }
   }
-  cout << "\tdisplay.display();" << endl << "}" << endl;
+  if(v.size()>0){
+    while(v.size()!=8){
+      v.push_back(0);
+    }
+  }
+  cout <<  "\n};" << endl;
   return 0;
 }
 

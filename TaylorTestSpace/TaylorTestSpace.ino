@@ -11,8 +11,8 @@ reccomend you go and read the .h files
 #include <Adafruit_SSD1306.h>
 #include "buttons.h"
 #include "sprites.h"
-#include "TaylorYoshiGame.h"
 #include "ledArray.h"
+#include "StarGame.h"
 
 // If using software SPI (the default case):
 #define OLED_MOSI   9 //SDA on the Board
@@ -26,12 +26,8 @@ Adafruit_SSD1306 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 #define MEDIUM 100
 #define SLOW 200
 
+StarGame* starGame;
 
-
-bool screen[128][64] = {0};
-
-
-testGame *newGame;
 void setup()   {
   // Serial.begin(9600);
   // by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
@@ -42,30 +38,10 @@ void setup()   {
   ledArray_writeLeds(0);
   delay(100);
 
-
-
-
-  newGame = new testGame();
+  starGame = new StarGame();
+  starGame->start(display);
 }
 
 void loop() {
-  //  Serial.println("testing...");
-  newGame->tick(display);
-  //   for (int i = 0; i < 100; i++) {
-  //     // drawLink(i, 47, 1);
-  //     display.display();
-  //     delay(25);
-  //     // drawLink(i, 47, 0);
-  //   }
-  // }
-  //
-  // void letterByLetterPrint( String phrase, uint16_t x, uint16_t y, uint16_t textSize, uint16_t printSpeed, uint16_t COLOR) {
-  //   display.setTextSize(textSize);
-  //   display.setTextColor(COLOR);
-  //   display.setCursor(x, y);
-  //   for (int i = 0; i < phrase.length(); i++) {
-  //     display.print(phrase.charAt(i));
-  //     display.display();
-  //     delay(printSpeed);
-  //   }
+  starGame->tick(display);
 }

@@ -5,21 +5,26 @@ Entity::Entity(int init_x_pos, int init_y_pos){
     y_pos = init_y_pos;
 }
 
-Entity::move(Direction d){
+void Entity::move(Adafruit_SSD1306 display, int d){
     display.drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
     switch(d){
-        case UP:
+        case 0:
             display.drawBitmap(x_pos, --y_pos, sprite_bmp, width, height, WHITE);
             break;
-        case DOWN:
+        case 1:
             display.drawBitmap(x_pos, ++y_pos, sprite_bmp, width, height, WHITE);
             break;
-        case LEFT:
+        case 2:
             display.drawBitmap(--x_pos, y_pos, sprite_bmp, width, height, WHITE);
             break;
-        case RIGHT:
+        case 3:
             display.drawBitmap(++x_pos, y_pos, sprite_bmp, width, height, WHITE);
             break;
     }
     display.display();
 }
+
+void Entity::draw(Adafruit_SSD1306 display){
+    display.drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
+}
+

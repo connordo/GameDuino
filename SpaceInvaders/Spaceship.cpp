@@ -1,14 +1,17 @@
-#include "Entity.h"
+#include "Spaceship.h"
 
-static const unsigned char PROGMEM Entity::sprite_bmp[]=
-{0b00011100,};
+static const unsigned char PROGMEM Spaceship::sprite_bmp[]=
+{
+0b00000100, 0b00000000, 0b00001110, 0b00000000, 0b00001110, 0b00000000, 0b00011111, 0b00000000, 0b01111111, 0b11000000, 0b11111111, 0b11100000, 0b01101110, 0b11000000, 0b00000100, 0b00000000,
+};
 
-Entity::Entity(int init_x_pos, int init_y_pos){
-    x_pos = init_x_pos;
-    y_pos = init_y_pos;
+Spaceship::Spaceship(int init_x_pos, int init_y_pos)
+:Entity(init_x_pos,init_y_pos){
+  height = 16;
+  width = 8;
 }
 
-void Entity::move(Adafruit_SSD1306 display, int d){
+void Spaceship::move(Adafruit_SSD1306 display, int d){
     display.drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
     switch(d){
         case 0:
@@ -27,19 +30,6 @@ void Entity::move(Adafruit_SSD1306 display, int d){
     display.display();
 }
 
-void Entity::draw(Adafruit_SSD1306 display){
+void Spaceship::draw(Adafruit_SSD1306 display){
     display.drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
-}
-
-int Entity::get_x_pos(){
-  return x_pos;
-}
-int Entity::get_y_pos(){
-  return y_pos;
-}
-int Entity::get_width(){
-  return width;
-}
-int Entity::get_height(){
-  return height;
 }

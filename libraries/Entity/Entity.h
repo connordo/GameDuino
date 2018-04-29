@@ -8,11 +8,15 @@ class Entity {
         int y_pos;
         int width;
         int height;
-        static unsigned char sprite_bmp[];
-       
+        static const unsigned char PROGMEM sprite_bmp[];
+
+
     public:
         Entity(int init_x_pos, int init_y_pos);
         virtual void draw(Adafruit_SSD1306 display);
         virtual void move(Adafruit_SSD1306 display, int d);
-
+        int get_x_pos();
+        int get_y_pos();
+        int get_width();
+        int get_height();
 };

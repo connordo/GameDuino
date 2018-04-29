@@ -35,10 +35,9 @@ int main(int argc, char** argv)
   int height = image.height();
   int width  = image.width();
 
-  cout << "image height: " << image.height() << endl;
-  cout << "image width:  " << image.width() << endl;
+  cout << "//image width:  " << image.width() << endl;
+  cout << "//image height: " << image.height() << endl;
 
-  cout << "\n\n\n" << endl;
   cout << "static const unsigned char PROGMEM " << spriteName << "[]=\n{ " << endl;
   std::vector<int> v;
   v.clear();
@@ -62,6 +61,7 @@ int main(int argc, char** argv)
     while(v.size()!=8){
       v.push_back(0);
     }
+    writeBufferToConsole(v);
   }
   cout <<  "\n};" << endl;
   return 0;

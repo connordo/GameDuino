@@ -8,7 +8,7 @@ SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display){
   bulletIndex = 1;
 }
 
-SI_StateMachine::tick(){
+void SI_StateMachine::tick(){
   //Mealey Actions
   switch(currentState){
     case init_st:
@@ -38,11 +38,8 @@ SI_StateMachine::tick(){
       if(user->get_x_pos() + user->get_width() < display->width())
       user->move(3);
     }
-    Serial.begin(9600);
-    Serial.println(bulletIndex);
 
     if(buttons_readAll() & BITMASK_BTN_A){
-      Serial.println("inside the a button");
       int prevBulletIndex;
       if(bulletIndex==0)
       prevBulletIndex = BULLETCOUNT-1;

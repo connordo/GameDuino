@@ -28,14 +28,10 @@ void Bullet::move(int d){
     }
 }
 void Bullet::forceMove(int x, int y){
-  Serial.begin(9600);
-  Serial.println("Force move beginning");
   display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
   x_pos = x;
   y_pos = y;
   display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
-  Serial.println("Force move ending");
-
 }
 void Bullet::draw(){
     display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);

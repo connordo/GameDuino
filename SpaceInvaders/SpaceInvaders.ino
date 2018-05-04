@@ -14,7 +14,7 @@
 #define OLED_CS    12
 #define OLED_RESET 13
 
-Adafruit_SSD1306 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+Adafruit_SSD1306 *display;
 
 //image height: 64
 //image width:  128
@@ -26,19 +26,20 @@ static const unsigned char PROGMEM SpaceInvaderLogo[]=
 SI_StateMachine *si_sm;
 
 void setup() {
-  display.begin(SSD1306_SWITCHCAPVCC);
-  Serial.begin(9600);
-  display.clearDisplay();
-  display.drawBitmap(0, 0, SpaceInvaderLogo, 128, 64, WHITE);
-  display.display();
-  Serial.println("printed the splash screen");
+  display = new Adafruit_SSD1306(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+  display->begin(SSD1306_SWITCHCAPVCC);
+  // Serial.begin(9600);
+  display->clearDisplay();
+  display->drawBitmap(0, 0, SpaceInvaderLogo, 128, 64, WHITE);
+  display->display();
+  // Serial.println("printed the splash screen");
   while(!(buttons_readAll()&BITMASK_BTN_A))
-  display.clearDisplay();
-  display.display();
-  si_sm = new SI_StateMachine();
+  display->clearDisplay();
+  display->display();
+  si_sm = new SI_StateMachine(display);
 }
 
 void loop() {
-Serial.println("looping");
-si_sm->tick(display);
+// Serial.println("looping");
+si_sm->tick();
 }

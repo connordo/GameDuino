@@ -1,4 +1,5 @@
 #include "Alien.h"
+#include "Arduino.h"
 
 static unsigned char Alien::sprite_bmp[]=
 {
@@ -11,8 +12,12 @@ Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
   width = 16;
   speed = 1;
 
+  alienbullet = new Bullet(display, 0, 70);
+
   animationSpeed = 40;
   animationCounter = 0;
+  fireCounter = 0;
+  FireMax = (int)random(50,100);
   currentSprite = 1;
   /*
   Serial.begin(9600);
@@ -71,8 +76,16 @@ void Alien::move(int d){
 }
 
 void Alien::animate(){
+
   Serial.begin(9600);
-  Serial.println(animationCounter);
+  Serial.print(fireCounter);
+  Serial.print("/");
+  Serial.println(FireMax);
+
+  if(alienbullet->get_y_pos() < 70){
+    alienbullet->move(1);
+  }
+
   if(animationCounter++ >= animationSpeed){
     display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
     switch((currentSprite == 1 ? currentSprite = 2 : currentSprite = 1)){
@@ -92,7 +105,14 @@ void Alien::animate(){
     display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
     animationCounter = 0;
   }
+
+  if(fireCounter++ >= FireMax){
+    alienbullet->forceMove(x_pos + 5, y_pos + 7);
+    fireCounter = 0;
+    FireMax = (int)random(50,100);
+  }
 }
+
 
 void Alien::draw(){
   display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);

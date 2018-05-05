@@ -13,18 +13,8 @@ class SI_StateMachine{
 public:
   Adafruit_SSD1306 *display;
   Spaceship *user;
-  Bullet shot[BULLETCOUNT] = {
-    Bullet(display, 0, -50),
-    Bullet(display, 10, -50),
-    Bullet(display, 20, -50),
-    Bullet(display, 30, -50),
-    Bullet(display, 40, -50),
-    Bullet(display, 0, -50),
-    Bullet(display, 10, -50),
-    Bullet(display, 20, -50),
-    Bullet(display, 30, -50),
-    Bullet(display, 40, -50)
-};
+  Bullet *userShot;
+  Alien *testbug;
   int bulletIndex;
   enum SI_state{
     init_st,

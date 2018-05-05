@@ -11,8 +11,9 @@ protected:
   int height;
   int speed;
   int animationSpeed;
+  int animationCounter;
   static const unsigned char PROGMEM sprite_bmp[];
-  
+
 
 public:
   Entity(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos);

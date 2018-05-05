@@ -5,7 +5,8 @@ SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display){
   this->display = display;
   currentState = init_st;
   user = new Spaceship(display, (128/2)-4, 64-8);
-  bulletIndex = 1;
+  testbug = new Alien(display, 10, 10);
+  userShot = new Bullet(display, 0, -10);
 }
 
 void SI_StateMachine::tick(){
@@ -13,13 +14,13 @@ void SI_StateMachine::tick(){
   switch(currentState){
     case init_st:
     user->draw();
+    testbug->draw();
     break;
     case idle_st:
-    for(int i = 0; i < BULLETCOUNT; i++){
-      if(shot[i].get_y_pos() > -4){
-        shot[i].move(0);
-        shot[i].move(0);
-      }
+    testbug->animate();
+    if(userShot->get_y_pos() > -4){
+      userShot->move(0);
+      userShot->move(0);
     }
     break;
   }
@@ -40,22 +41,9 @@ void SI_StateMachine::tick(){
     }
 
     if(buttons_readAll() & BITMASK_BTN_A){
-      int prevBulletIndex;
-      if(bulletIndex==0)
-      prevBulletIndex = BULLETCOUNT-1;
-      else
-      prevBulletIndex = bulletIndex-1;
+      if(userShot->get_y_pos() < 0){
+        userShot->forceMove(user->get_x_pos() + 5, user->get_y_pos() - 4);
 
-      if(shot[prevBulletIndex].get_y_pos() < user->get_y_pos()-10){
-        shot[bulletIndex].forceMove(user->get_x_pos() + 5, user->get_y_pos() - 4);
-        if(bulletIndex==BULLETCOUNT-1){
-
-          bulletIndex=0;
-        }
-        else{
-
-          bulletIndex++;
-        }
       }
     }
     break;

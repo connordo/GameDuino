@@ -36,6 +36,7 @@ void setup() {
   while(!(buttons_readAll()&BITMASK_BTN_A))
   display->clearDisplay();
   display->display();
+  delay(100);
   si_sm = new SI_StateMachine(display);
 }
 

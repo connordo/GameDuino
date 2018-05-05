@@ -16,6 +16,7 @@ Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
   width = 16;
   speed = 1;
   animationSpeed = 5;
+  sprite_bmp = alien1;
 }
 
 void Alien::move(int d){

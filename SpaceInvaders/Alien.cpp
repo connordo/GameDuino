@@ -2,7 +2,7 @@
 #include "Arduino.h"
 #define RANDOMFIRELOW 100
 #define RANDOMFIREHIGH 500
-static unsigned char Alien::sprite_bmp[]=
+unsigned char Alien::sprite_bmp[]=
 {
   0b00100000, 0b10000000, 0b00010001, 0b00000000, 0b00111111, 0b10000000, 0b01101110, 0b11000000, 0b11111111, 0b11100000, 0b10111111, 0b10100000, 0b10100000, 0b10100000, 0b00011011, 0b00000000,
 };
@@ -84,7 +84,7 @@ void Alien::animate(){
   // Serial.println(FireMax);
 
   if(alienbullet->get_y_pos() < 70){
-    alienbullet->move(1);
+    alienbullet->move(DOWN);
   }
 
   if(animationCounter++ >= animationSpeed){

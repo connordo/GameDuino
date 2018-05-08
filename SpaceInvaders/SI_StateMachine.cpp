@@ -19,8 +19,8 @@ void SI_StateMachine::tick(){
     case idle_st:
     testbug->animate();
     if(userShot->get_y_pos() > -4){
-      userShot->move(0);
-      userShot->move(0);
+      userShot->move(UP);
+      userShot->move(UP);
     }
     break;
   }
@@ -33,11 +33,11 @@ void SI_StateMachine::tick(){
     case idle_st:
     if(buttons_readAll() & BITMASK_BTN_LEFT){
       if(user->get_x_pos() > 0)
-      user->move(2);
+      user->move(LEFT);
     }
     if(buttons_readAll() & BITMASK_BTN_RIGHT){
       if(user->get_x_pos() + user->get_width() < display->width())
-      user->move(3);
+      user->move(RIGHT);
     }
 
     if(buttons_readAll() & BITMASK_BTN_A){

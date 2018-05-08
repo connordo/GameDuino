@@ -1,7 +1,13 @@
 #include "Entity.h"
 
-static const unsigned char PROGMEM Entity::sprite_bmp[]=
-{0b00011100,};
+const unsigned char PROGMEM Entity::sprite_bmp[]=
+{0b00011100,}; // Should never display
+
+// Should be overridden 
+const unsigned char* Entity::getSpriteBmp()
+{
+	return sprite_bmp; 
+}
 
 Entity::Entity(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos){
   this->display = display;
@@ -9,26 +15,30 @@ Entity::Entity(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos){
   y_pos = init_y_pos;
 }
 
-void Entity::move(int d){
-  display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
+void Entity::move(MoveDir d){
+  display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, BLACK);
   switch(d){
-    case 0:
-    display->drawBitmap(x_pos, --y_pos, sprite_bmp, width, height, WHITE);
+    case UP:
+    display->drawBitmap(x_pos, y_pos-=speed, getSpriteBmp(), width, height, WHITE);
     break;
-    case 1:
-    display->drawBitmap(x_pos, ++y_pos, sprite_bmp, width, height, WHITE);
+    case DOWN:
+    display->drawBitmap(x_pos, y_pos+=speed, getSpriteBmp(), width, height, WHITE);
     break;
-    case 2:
-    display->drawBitmap(--x_pos, y_pos, sprite_bmp, width, height, WHITE);
+    case LEFT:
+    display->drawBitmap(x_pos-=speed, y_pos, getSpriteBmp(), width, height, WHITE);
     break;
-    case 3:
-    display->drawBitmap(++x_pos, y_pos, sprite_bmp, width, height, WHITE);
+    case RIGHT:
+    display->drawBitmap(x_pos+=speed, y_pos, getSpriteBmp(), width, height, WHITE);
     break;
   }
 }
 
+//void Entity::onColide(Entity* otherEntity)
+//{
+//}
+
 void Entity::draw(){
-  display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
+  display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, WHITE);
 }
 
 int Entity::get_x_pos(){

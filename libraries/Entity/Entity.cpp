@@ -53,3 +53,13 @@ int Entity::get_width(){
 int Entity::get_height(){
   return height;
 }
+
+int Entity::get_true_width()
+{
+	return true_width;
+}
+
+char Entity::get_type()
+{
+	return type;
+}

@@ -3,6 +3,7 @@
 
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+//#include <vector>
 #include "Spaceship.h"
 #include "Bullet.h"
 #include "Alien.h"
@@ -10,6 +11,10 @@
 #define BULLETCOUNT 10
 
 class SI_StateMachine{
+private:
+	//std::vector<CollideSensor*> collideSensors;
+	void checkCollisions();
+
 public:
   Adafruit_SSD1306 *display;
   Spaceship *user;

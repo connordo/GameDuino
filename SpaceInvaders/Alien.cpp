@@ -11,9 +11,11 @@ Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
 :Entity(display, init_x_pos, init_y_pos){
   height = 8;
   width = 16;
+  true_width = 11;
   speed = 1;
+  type = 'a';
 
-  alienbullet = new Bullet(display, 0, 70);
+  //alienbullet = new Bullet(display, 0, 70);
 
   animationSpeed = 40;
   animationCounter = 0;
@@ -58,6 +60,8 @@ while(1);
 */
 }
 
+
+
 void Alien::move(int d){
   display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
   switch(d){
@@ -76,6 +80,12 @@ void Alien::move(int d){
   }
 }
 
+void Alien::explode()
+{
+	display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
+
+}
+
 void Alien::animate(){
 
   // Serial.begin(9600);
@@ -83,9 +93,9 @@ void Alien::animate(){
   // Serial.print("/");
   // Serial.println(FireMax);
 
-  if(alienbullet->get_y_pos() < 70){
+ /* if(alienbullet->get_y_pos() < 70){
     alienbullet->move(DOWN);
-  }
+  }*/
 
   if(animationCounter++ >= animationSpeed){
     display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
@@ -107,11 +117,11 @@ void Alien::animate(){
     animationCounter = 0;
   }
 
-  if(fireCounter++ >= FireMax){
-    alienbullet->forceMove(x_pos + 5, y_pos + 7);
-    fireCounter = 0;
-    FireMax = (int)random(RANDOMFIRELOW, RANDOMFIREHIGH);
-  }
+  //if(fireCounter++ >= FireMax){
+  //  alienbullet->forceMove(x_pos + 5, y_pos + 7);
+  //  fireCounter = 0;
+  //  FireMax = (int)random(RANDOMFIRELOW, RANDOMFIREHIGH);
+  //}
 }
 
 

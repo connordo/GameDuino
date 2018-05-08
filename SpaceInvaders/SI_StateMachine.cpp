@@ -1,11 +1,18 @@
 #include "SI_StateMachine.h"
 #include <buttons.h>
 
+void SI_StateMachine::checkCollisions()
+{
+	if (userShot->collided(testbug)) {
+		userShot->onCollide(testbug);
+	}
+}
+
 SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display){
   this->display = display;
   currentState = init_st;
   user = new Spaceship(display, (128/2)-4, 64-8);
-  testbug = new Alien(display, 10, 10);
+  testbug = new Alien(display, 30, 10);
   userShot = new Bullet(display, 0, -10);
 }
 
@@ -46,7 +53,10 @@ void SI_StateMachine::tick(){
 
       }
     }
+	checkCollisions();
     break;
   }
   display->display();
 }
+
+

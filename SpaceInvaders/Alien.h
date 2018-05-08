@@ -1,6 +1,6 @@
 #pragma once
 #include <Entity.h>
-#include "Bullet.h"
+//#include "Bullet.h"
 
 class Alien: public Entity {
 public:
@@ -16,13 +16,15 @@ public:
   };
 
   int currentSprite;
-  Bullet *alienbullet;
+  //Bullet *alienbullet;
   int fireCounter;
   int FireMax;
   
   void animate();
   void draw();
   void move(int d);
+  void explode();
 
   Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos);
+  
 };

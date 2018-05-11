@@ -27,7 +27,6 @@ void SI_StateMachine::tick(){
     testbug->animate();
     if(userShot->get_y_pos() > -4){
       userShot->move(UP);
-      userShot->move(UP);
     }
     break;
   }

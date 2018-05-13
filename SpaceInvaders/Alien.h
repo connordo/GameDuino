@@ -19,12 +19,13 @@ public:
   //Bullet *alienbullet;
   int fireCounter;
   int FireMax;
-  
+  bool alive;
+
   void animate();
   void draw();
   void move(int d);
   void explode();
 
   Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos);
-  
+
 };

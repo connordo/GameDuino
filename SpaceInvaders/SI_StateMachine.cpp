@@ -3,17 +3,18 @@
 
 void SI_StateMachine::checkCollisions()
 {
-	if (userShot->collided(testbug)) {
-		userShot->onCollide(testbug);
-	}
+	// if (userShot->collided(testbug)) {
+		// userShot->onCollide(testbug);
+	// }
 }
 
 SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display){
   this->display = display;
   currentState = init_st;
   user = new Spaceship(display, (128/2)-4, 64-8);
-  testbug = new Alien(display, 30, 10);
+  // testbug = new Alien(display, 30, 10);
   userShot = new Bullet(display, 0, -10);
+	alienholder = new AlienHolder(display);
 }
 
 void SI_StateMachine::tick(){
@@ -21,10 +22,12 @@ void SI_StateMachine::tick(){
   switch(currentState){
     case init_st:
     user->draw();
-    testbug->draw();
+    // testbug->draw();
+		alienholder->initilizeAliens();
     break;
     case idle_st:
-    testbug->animate();
+    // testbug->animate();
+		alienholder->iterateThroughAliens();
     if(userShot->get_y_pos() > -4){
       userShot->move(UP);
     }
@@ -57,5 +60,3 @@ void SI_StateMachine::tick(){
   }
   display->display();
 }
-
-

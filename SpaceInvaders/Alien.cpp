@@ -14,53 +14,13 @@ Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
   true_width = 11;
   speed = 1;
   type = 'a';
-
-  //alienbullet = new Bullet(display, 0, 70);
-
+  alive = true;
   animationSpeed = 40;
   animationCounter = 0;
   fireCounter = 0;
   FireMax = (int)random(RANDOMFIRELOW, RANDOMFIREHIGH);
   currentSprite = 1;
-  /*
-  Serial.begin(9600);
-
-  Serial.println("Printing the contents of sprite_bmp");
-  for(int i = 0; i < 16; i++){
-  Serial.print(sprite_bmp[i]);
-  Serial.print(" \t");
 }
-Serial.println("\n");
-
-Serial.println("Printing the contents of alien1");
-for(int i = 0; i < 16; i++){
-Serial.print(alien1[i]);
-Serial.print(" \t");
-}
-Serial.println("\n");
-
-Serial.println("Printing the contents of alien2");
-for(int i = 0; i < 16; i++){
-Serial.print(alien2[i]);
-Serial.print(" \t");
-}
-Serial.println("\n");
-
-for(int i = 0; i < 16; i++){
-sprite_bmp[i] = alien2[i];
-}
-
-Serial.println("Printing the contents of sprite_bmp");
-for(int i = 0; i < 16; i++){
-Serial.print(sprite_bmp[i]);
-Serial.print(" \t");
-}
-Serial.println("\n");
-while(1);
-*/
-}
-
-
 
 void Alien::move(int d){
   display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
@@ -87,16 +47,6 @@ void Alien::explode()
 }
 
 void Alien::animate(){
-
-  // Serial.begin(9600);
-  // Serial.print(fireCounter);
-  // Serial.print("/");
-  // Serial.println(FireMax);
-
- /* if(alienbullet->get_y_pos() < 70){
-    alienbullet->move(DOWN);
-  }*/
-
   if(animationCounter++ >= animationSpeed){
     display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
     switch((currentSprite == 1 ? currentSprite = 2 : currentSprite = 1)){
@@ -116,15 +66,13 @@ void Alien::animate(){
     display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
     animationCounter = 0;
   }
-
-  //if(fireCounter++ >= FireMax){
-  //  alienbullet->forceMove(x_pos + 5, y_pos + 7);
-  //  fireCounter = 0;
-  //  FireMax = (int)random(RANDOMFIRELOW, RANDOMFIREHIGH);
-  //}
 }
 
 
 void Alien::draw(){
   display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, WHITE);
+}
+
+bool Alien::isAlive(){
+  return alive;
 }

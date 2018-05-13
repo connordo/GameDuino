@@ -7,6 +7,7 @@
 #include "Spaceship.h"
 #include "Bullet.h"
 #include "Alien.h"
+#include "AlienHolder.h"
 
 #define BULLETCOUNT 10
 
@@ -20,6 +21,7 @@ public:
   Spaceship *user;
   Bullet *userShot;
   Alien *testbug;
+	AlienHolder *alienholder;
   int bulletIndex;
   enum SI_state{
     init_st,

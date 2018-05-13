@@ -3,6 +3,9 @@
 //#include "Bullet.h"
 
 class Alien: public Entity {
+private:
+  bool alive;
+
 public:
   static unsigned char sprite_bmp[];
   uint16_t alien1[16]=
@@ -19,7 +22,6 @@ public:
   //Bullet *alienbullet;
   int fireCounter;
   int FireMax;
-  bool alive;
 
   void animate();
   void draw();
@@ -27,5 +29,5 @@ public:
   void explode();
 
   Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos);
-
+  bool isAlive();
 };

@@ -5,6 +5,7 @@
 #include <Adafruit_SSD1306.h>
 
 #define ALIENCOUNT 14
+#define MOVEMENT_COUNTER_MAX 30
 
 class AlienHolder{
 private:
@@ -25,6 +26,11 @@ private:
     Alien(display, 75, 10),
     Alien(display, 90, 10)
   };
+  int movementCounter;
+  int directionOfMovement; //positive or negative
+  int blockwidth;
+  int block_x_position;
+  int block_y_position;
 public:
   AlienHolder(Adafruit_SSD1306 *display);
   void initilizeAliens();

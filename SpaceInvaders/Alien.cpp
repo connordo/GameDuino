@@ -20,6 +20,9 @@ Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
   fireCounter = 0;
   FireMax = (int)random(RANDOMFIRELOW, RANDOMFIREHIGH);
   currentSprite = 1;
+  for(int i = 0; i < 16; i++){
+    sprite_bmp[i] = alien1[i];
+  }
 }
 
 void Alien::move(int d){
@@ -48,7 +51,7 @@ void Alien::explode()
 
 void Alien::animate(){
   if(animationCounter++ >= animationSpeed){
-    display->drawBitmap(x_pos, y_pos, sprite_bmp, width, height, BLACK);
+    display->fillRect(x_pos, y_pos, width, height, BLACK);
     switch((currentSprite == 1 ? currentSprite = 2 : currentSprite = 1)){
       case 1:
       for(int i = 0; i < 16; i++){

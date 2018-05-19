@@ -9,10 +9,10 @@ Bunker::Bunker(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos):Entity
   entities = new Entity*[BLOCKCOUNT]{
     new BunkerBlock(display, x_pos, y_pos),
     new BunkerBlock(display, x_pos + 4, y_pos),
-    new BunkerBlock(display, x_pos, y_pos + 4),
-    new BunkerBlock(display, x_pos, y_pos + 8),
-    new BunkerBlock(display, x_pos, y_pos + 16),
-    new BunkerBlock(display, x_pos + 4, y_pos + 16)
+    new BunkerBlock(display, x_pos + 8, y_pos),
+    new BunkerBlock(display, x_pos + 12, y_pos),
+    new BunkerBlock(display, x_pos + 12, y_pos + 4),
+    new BunkerBlock(display, x_pos, y_pos + 4)
   };
   array_length = BLOCKCOUNT;
 }

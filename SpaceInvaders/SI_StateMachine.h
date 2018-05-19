@@ -8,6 +8,7 @@
 #include "Bullet.h"
 #include "Alien.h"
 #include "AlienHolder.h"
+#include "Bunker.h"
 
 #define BULLETCOUNT 10
 
@@ -22,6 +23,9 @@ public:
   Bullet *userShot;
   Alien *testbug;
 	AlienHolder *alienholder;
+	Bunker *bunker1;
+	Bunker *bunker2;
+	Bunker *bunker3;
   int bulletIndex;
   enum SI_state{
     init_st,

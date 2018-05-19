@@ -15,6 +15,9 @@ SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display){
   // testbug = new Alien(display, 30, 10);
   userShot = new Bullet(display, 0, -10);
 	alienholder = new AlienHolder(display);
+  bunker1 = new Bunker(display, 10, 45);
+  bunker2 = new Bunker(display, 55, 45);
+  bunker3 = new Bunker(display, 100, 45);
 }
 
 void SI_StateMachine::tick(){

@@ -55,10 +55,8 @@ void Alien::explode()
 
 void Alien::animate(){
   if(animationCounter++ >= animationSpeed){
-    Serial.begin(9600);
     display->fillRect(x_pos, y_pos, width, height, BLACK);
     currentSprite == 1 ? currentSprite = 2 : currentSprite = 1;
-    Serial.println(currentSprite);
     display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, WHITE);
     animationCounter = 0;
   }

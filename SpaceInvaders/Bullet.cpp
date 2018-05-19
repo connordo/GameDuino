@@ -14,7 +14,7 @@ Bullet::Bullet(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos) :Colli
 	height = 4;
 	width = 1;
 	bmp_width = 8;
-	speed = 1;
+	speed = 3;
 	type = 'b';
 }
 

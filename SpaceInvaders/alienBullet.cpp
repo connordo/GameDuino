@@ -13,7 +13,7 @@ const unsigned char * AlienBullet::getSpriteBmp()
 AlienBullet::  AlienBullet(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos):Bullet(display, init_x_pos, init_y_pos){
   height = 7;
   width = 8;
-  true_width = 3;
+  bmp_width = 3;
   speed = 1;
   type = 'b';
 }

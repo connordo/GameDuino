@@ -11,7 +11,7 @@ protected:
   int y_pos;
   int width;
   int height;
-  int true_width;
+  int bmp_width;
   int speed;
   int animationSpeed;
   int animationCounter;
@@ -28,6 +28,6 @@ public:
   int get_y_pos();
   int get_width();
   int get_height();
-  int get_true_width();
+  int get_bmp_width();
   char get_type();
 };

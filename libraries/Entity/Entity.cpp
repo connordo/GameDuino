@@ -3,10 +3,10 @@
 const unsigned char PROGMEM Entity::sprite_bmp[]=
 {0b00011100,}; // Should never display
 
-// Should be overridden 
+// Should be overridden
 const unsigned char* Entity::getSpriteBmp()
 {
-	return sprite_bmp; 
+	return sprite_bmp;
 }
 
 Entity::Entity(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos){
@@ -54,9 +54,9 @@ int Entity::get_height(){
   return height;
 }
 
-int Entity::get_true_width()
+int Entity::get_bmp_width()
 {
-	return true_width;
+	return bmp_width;
 }
 
 char Entity::get_type()

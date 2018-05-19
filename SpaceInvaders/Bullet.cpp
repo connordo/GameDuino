@@ -12,8 +12,8 @@ const unsigned char * Bullet::getSpriteBmp()
 
 Bullet::Bullet(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos) :CollideSensor(display, init_x_pos, init_y_pos) {
 	height = 4;
-	width = 8;
-	true_width = 1;
+	width = 1;
+	bmp_width = 8;
 	speed = 1;
 	type = 'b';
 }

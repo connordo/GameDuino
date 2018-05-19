@@ -18,8 +18,8 @@ const unsigned char PROGMEM Alien::alien_down_bmp[]=
 Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
 :Entity(display, init_x_pos, init_y_pos){
   height = 8;
-  width = 16;
-  true_width = 11;
+  width = 11;
+  bmp_width = 16;
   speed = 1;
   type = 'a';
   alive = true;

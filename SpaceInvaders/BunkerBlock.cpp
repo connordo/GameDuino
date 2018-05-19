@@ -39,8 +39,9 @@ BunkerBlock::BunkerBlock(Adafruit_SSD1306 *display, int init_x_pos, int init_y_p
 }
 
 void BunkerBlock::takeDamage(){
+  display->drawBitmap(x_pos, y_pos, block_whole_bmp, width, height, BLACK);
   if(--life == 0){
-    display->drawBitmap(x_pos, y_pos, block_whole_bmp, width, height, BLACK);
     x_pos = -10;
   }
+  draw();
 }

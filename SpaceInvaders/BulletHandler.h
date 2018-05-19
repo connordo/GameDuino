@@ -16,6 +16,6 @@ private:
     AlienBullet(display, 0, -10),
     AlienBullet(display, 0, -10)
   };
-public:b
+public:
   BulletHandler(Adafruit_SSD1306 *display);
 };

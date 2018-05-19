@@ -3,9 +3,9 @@
 
 void SI_StateMachine::checkCollisions()
 {
-	// if (userShot->collided(testbug)) {
-		// userShot->onCollide(testbug);
-	// }
+	if (userShot->collided(alienholder)) {
+		userShot->onCollide(alienholder);
+	}
 }
 
 SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display){

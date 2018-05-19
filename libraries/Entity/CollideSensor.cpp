@@ -8,7 +8,7 @@ bool CollideSensor::collided(Entity* e)
 	int yDiff = this->get_y_pos() - e->get_y_pos();
 
 	return (yDiff < e->get_height() && yDiff > 0 - this->get_height()) &&
-			(xDiff < e->get_bmp_width() && xDiff > 0 - this->get_bmp_width());
+			(xDiff < e->get_width() && xDiff > 0 - this->get_width());
 }
 
 bool CollideSensor::collided(EntityGroup * eg)
@@ -17,7 +17,7 @@ bool CollideSensor::collided(EntityGroup * eg)
 	int yDiff = this->get_y_pos() - eg->get_y_pos();
 
 	return (yDiff < eg->get_height() && yDiff > 0 - this->get_height()) &&
-		(xDiff < eg->get_width() && xDiff > 0 - this->get_bmp_width());
+		(xDiff < eg->get_width() && xDiff > 0 - this->get_width());
 }
 
 CollideSensor::CollideSensor(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)

@@ -34,6 +34,7 @@ BunkerBlock::BunkerBlock(Adafruit_SSD1306 *display, int init_x_pos, int init_y_p
   height = 4;
   width = 4;
   bmp_width = 8;
+  draw();
 }
 
 void BunkerBlock::takeDamage(){

@@ -13,6 +13,7 @@ unsigned const char * Spaceship::getSpriteBmp()
 Spaceship::Spaceship(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
 :Entity(display, init_x_pos, init_y_pos){
   height = 8;
+	width = 16;
   bmp_width = 16;
   speed = 1;
 }

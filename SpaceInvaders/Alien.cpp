@@ -51,6 +51,8 @@ void Alien::move(int d){
 void Alien::explode()
 {
   display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, BLACK);
+  alive = false;
+  x_pos = -10;
 }
 
 void Alien::animate(){

@@ -10,4 +10,5 @@ public:
   Bullet(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos);
   void Bullet::forceMove(int x, int y);
   void onCollide(Entity* e);
+  void onCollide(EntityGroup* eg);
 };

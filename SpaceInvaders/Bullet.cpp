@@ -40,3 +40,14 @@ void Bullet::onCollide(Entity * e)
 		break;
 	}
 }
+
+void Bullet::onCollide(EntityGroup * eg)
+{
+	// For entities in eg, do collided
+	Entity ** entities = eg->getEntities();
+	for (int i = 0; i < eg->get_arr_length(); i++) {
+		if (collided(entities[i])) {
+			onCollide(entities[i]);
+		}
+	}
+}

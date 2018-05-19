@@ -6,6 +6,17 @@ void SI_StateMachine::checkCollisions()
 	if (userShot->collided(alienholder)) {
 		userShot->onCollide(alienholder);
 	}
+
+	if (userShot->collided(bunker1)) {
+		userShot->onCollide(bunker1);
+	}
+
+	if (userShot->collided(bunker2)) {
+		userShot->onCollide(bunker2);
+	}
+	if (userShot->collided(bunker3)) {
+		userShot->onCollide(bunker3);
+	}
 }
 
 SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display){

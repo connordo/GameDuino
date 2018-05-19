@@ -27,6 +27,8 @@ void Bullet::forceMove(int x, int y) {
 
 void Bullet::onCollide(Entity * e)
 {
+	display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, BLACK);
+	y_pos = -10;
 	switch (e->get_type()) {
 	case 'a':
 	{
@@ -35,7 +37,11 @@ void Bullet::onCollide(Entity * e)
 		alien->explode();
 	}
 	break;
-
+	case 'b':
+	{
+		BunkerBlock * bunkerBlock = static_cast<BunkerBlock*>(e);
+		bunkerBlock->takeDamage();
+	}
 	default:
 		break;
 	}

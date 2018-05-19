@@ -1,6 +1,7 @@
 #pragma once
 #include <CollideSensor.h>
 #include "Alien.h"
+#include "BunkerBlock.h"
 
 class Bullet: public CollideSensor {
 private:

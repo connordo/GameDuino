@@ -13,7 +13,10 @@ const unsigned char PROGMEM Alien::alien_down_bmp[]=
   0b00100000, 0b10000000, 0b10010001, 0b00100000, 0b10111111, 0b10100000, 0b11101110, 0b11100000, 0b11111111, 0b11100000, 0b01111111, 0b11000000, 0b00100000, 0b10000000, 0b01000000, 0b01000000,
 };
 
-
+static const unsigned char PROGMEM Alien::death_animation_bmp[]=
+{
+  0b10000100, 0b00100000, 0b01100100, 0b11000000, 0b00010101, 0b00000000, 0b00000000, 0b00000000, 0b11100000, 0b11100000, 0b00000000, 0b00000000, 0b01100100, 0b11000000, 0b10000100, 0b00100000,
+};
 
 Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
 :Entity(display, init_x_pos, init_y_pos){
@@ -23,8 +26,10 @@ Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
   speed = 1;
   type = 'a';
   alive = true;
+  exploding = false;
   animationSpeed = 40;
   animationCounter = 0;
+  deathTimerCount = 0;
   fireCounter = 0;
   FireMax = (int)random(RANDOMFIRELOW, RANDOMFIREHIGH);
   currentSprite = 1;
@@ -51,8 +56,10 @@ void Alien::move(int d){
 void Alien::explode()
 {
   display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, BLACK);
-  alive = false;
-  x_pos = -10;
+  exploding = true;
+  display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, WHITE);
+  deathTimerCount = 0;
+  // x_pos = -10;
 }
 
 void Alien::animate(){
@@ -61,6 +68,15 @@ void Alien::animate(){
     currentSprite == 1 ? currentSprite = 2 : currentSprite = 1;
     display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, WHITE);
     animationCounter = 0;
+  }
+  if(exploding){
+    display->fillRect(x_pos, y_pos, width, height, BLACK);
+    display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, WHITE);
+    if(deathTimerCount++ > 2){
+      display->fillRect(x_pos, y_pos, width, height, BLACK);
+      alive = false;
+      x_pos = -20;
+    }
   }
 }
 
@@ -73,6 +89,9 @@ bool Alien::isAlive(){
 }
 
 const unsigned char* Alien::getSpriteBmp(){
+  if(exploding){
+    return death_animation_bmp;
+  }
   if(currentSprite == 1){
     return alien_up_bmp;
   }

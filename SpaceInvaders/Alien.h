@@ -5,14 +5,17 @@
 class Alien: public Entity {
 private:
   bool alive;
+  bool exploding;
 
 public:
   static const unsigned char PROGMEM alien_up_bmp[];
   static const unsigned char PROGMEM alien_down_bmp[];
+  static const unsigned char PROGMEM death_animation_bmp[];
 
   int currentSprite;
   int fireCounter;
   int FireMax;
+  int deathTimerCount;
 
   void animate();
   void draw();

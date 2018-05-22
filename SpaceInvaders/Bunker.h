@@ -1,3 +1,4 @@
+#pragma once
 #include "EntityGroup.h"
 #include "BunkerBlock.h"
 

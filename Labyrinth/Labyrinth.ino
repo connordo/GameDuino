@@ -43,12 +43,12 @@ void loop() {
 }
 
 void mazeGenerator(Adafruit_SSD1306 *display, int maze[MAZE_X_SIZE][MAZE_Y_SIZE], int16_t x, int16_t y){
-  Serial.println(freeRam());
-  maze[x][y] = 1;
+  Serial.println(freeRam()); // see how much memory is left and available
+  maze[x][y] = 1; // probably fine
   int16_t optionsLeft = 4;
   while(optionsLeft > 0){
     //Get the available options
-    int options[4] = {0};
+    int options[4] = {0}; //How to make this less???
     if(y - 1 >= 0 && maze[x][y - 1] == 0){
       options[0] = 1;
     }
@@ -63,7 +63,7 @@ void mazeGenerator(Adafruit_SSD1306 *display, int maze[MAZE_X_SIZE][MAZE_Y_SIZE]
     }
     optionsLeft = 0;
     for(int i = 0; i < 4; i++){
-      if(options[i]!=0){
+      if(options[i] != 0){
         optionsLeft++;
       }
     }

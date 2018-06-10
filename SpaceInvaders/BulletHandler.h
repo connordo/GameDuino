@@ -7,7 +7,7 @@
 #include "AlienHolder.h"
 #include "Spaceship.h"
 #define SHOTRATE 35
-
+#define ALIEN_ROW_LEN 7
 
 class BulletHandler {
 private:
@@ -22,6 +22,7 @@ private:
 	int alienShotRate;
 	int shotCountUp;
 	Alien *pickAlien();
+	int alienBelow(int index);
 public:
 	BulletHandler(Adafruit_SSD1306 * display, Bunker** bunkers, AlienHolder * ah, Spaceship* us);
 	void moveBullets();

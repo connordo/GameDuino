@@ -3,7 +3,38 @@
 
 Alien * BulletHandler::pickAlien()
 {
-	return (Alien*) alienHolder->getEntities()[11];
+	int pickedIndex;
+	Alien* pickedAlien;
+	bool aliveAlien = false;
+	while (!aliveAlien) {
+		pickedIndex = random(0, alienHolder->get_arr_length());
+		pickedAlien = (Alien*)alienHolder->getEntities()[pickedIndex];
+		aliveAlien = pickedAlien->isAlive();
+	}
+
+	// We got an alive alien, now lets see if there is an alive alien below him
+	int below = alienBelow(pickedIndex);
+	if (below < 0) {
+		// No alien below
+		return (Alien*)pickedAlien;
+	}
+	else {
+		return (Alien*)alienHolder->getEntities()[below];
+	}
+}
+
+int BulletHandler::alienBelow(int index)
+{
+	int newAlienInd = index + ALIEN_ROW_LEN;
+	if (newAlienInd < alienHolder->get_arr_length()) {
+		Alien* newAlien = (Alien*)alienHolder->getEntities()[newAlienInd];
+		if (newAlien->isAlive()) {
+			return newAlienInd;
+		}
+	}
+
+	return -1;
+
 }
 
 BulletHandler::BulletHandler(Adafruit_SSD1306 * display, Bunker ** bunkers, AlienHolder * ah, Spaceship * us)

@@ -5,6 +5,8 @@ class Spaceship : public Entity {
 private:
 	const unsigned char* getSpriteBmp();
 	bool alive;
+	static const unsigned char PROGMEM death_animation_bmp[];
+
 public:
 	static const unsigned char PROGMEM spaceship_bmp[];
 	Spaceship(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos);

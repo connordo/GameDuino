@@ -37,14 +37,26 @@ void SI_StateMachine::tick() {
 		//	userShot->move(UP);
 		//}
 		break;
-		case end_game_st:
+
+		case game_over_st:
 		delay(500);
 		display->clearDisplay();
-		//game over screen
-		display->setCursor(10,10);
+		display->setCursor(10, 10);
 		display->setTextSize(2);
 		display->setTextColor(WHITE);
 		display->println("Game Over");
+		display->display();
+		delay(5000);
+		resetFunc();  //call reset
+		break;
+
+		case vicotry_st:
+		delay(500);
+		display->fillRect(0, 0, 128, 30, BLACK);
+		display->setCursor(10, 10);
+		display->setTextSize(2);
+		display->setTextColor(WHITE);
+		display->println(" Victory!");
 		display->display();
 		delay(5000);
 		resetFunc();  //call reset
@@ -74,10 +86,15 @@ void SI_StateMachine::tick() {
 		}
 		checkCollisions();
 		if(user->isAlive()==false){
-			currentState = end_game_st;
+			currentState = game_over_st;
+		}
+		if(alienholder->allDead()){
+			currentState = vicotry_st;
 		}
 		break;
-		case end_game_st:
+		case game_over_st:
+		break;
+		case vicotry_st:
 		break;
 	}
 	display->display();

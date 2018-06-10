@@ -25,6 +25,7 @@ private:
 	int alienBelow(int index);
 public:
 	BulletHandler(Adafruit_SSD1306 * display, Bunker** bunkers, AlienHolder * ah, Spaceship* us);
+	~BulletHandler();
 	void moveBullets();
 	void shootUserBullet();
 	void checkCollisions();

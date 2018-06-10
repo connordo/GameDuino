@@ -10,6 +10,7 @@ void SI_StateMachine::checkCollisions()
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display) {
+	level = 1;
 	movementCounterMax = 30;
 	this->display = display;
 	currentState = init_st;
@@ -20,8 +21,9 @@ SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display) {
 	bunker2 = new Bunker(display, 55, 45);
 	bunker3 = new Bunker(display, 100, 45);
 	bulletHandler = new BulletHandler(display, new Bunker*[3]{ bunker1, bunker2, bunker3 }, alienholder, user);
+	ledArray_init();
 	ledArray_writeLeds(0);
-	digitalWrite(LED1, HIGH);
+	digitalWrite(LED10, HIGH);
 }
 
 void SI_StateMachine::tick() {
@@ -45,24 +47,34 @@ void SI_StateMachine::tick() {
 		case level_increment_st:
 		movementCounterMax -= 3;
 		level++;
-		if(level == 2)
-		digitalWrite(LED2, HIGH);
-		if(level == 3)
-		digitalWrite(LED3, HIGH);
-		if(level == 4)
-		digitalWrite(LED4, HIGH);
-		if(level == 5)
-		digitalWrite(LED5, HIGH);
-		if(level == 6)
-		digitalWrite(LED6, HIGH);
-		if(level == 7)
-		digitalWrite(LED7, HIGH);
-		if(level == 8)
-		digitalWrite(LED8, HIGH);
-		if(level == 9)
-		digitalWrite(LED9, HIGH);
-		if(level == 10)
-		digitalWrite(LED10, HIGH);
+		ledArray_init();
+		if(level == 2){
+			digitalWrite(LED9, HIGH);
+		}
+		if(level == 3){
+			digitalWrite(LED8, HIGH);
+		}
+		if(level == 4){
+			digitalWrite(LED7, HIGH);
+		}
+		if(level == 5){
+			digitalWrite(LED6, HIGH);
+		}
+		if(level == 6){
+			digitalWrite(LED5, HIGH);
+		}
+		if(level == 7){
+			digitalWrite(LED4, HIGH);
+		}
+		if(level == 8){
+			digitalWrite(LED3, HIGH);
+		}
+		if(level == 9){
+			digitalWrite(LED2, HIGH);
+		}
+		if(level == 10){
+			digitalWrite(LED1, HIGH);
+		}
 
 		delete alienholder;
 		alienholder = new AlienHolder(display, movementCounterMax);
@@ -74,7 +86,7 @@ void SI_StateMachine::tick() {
 		case game_over_st:
 		delay(500);
 		display->clearDisplay();
-		display->setCursor(10, 10);
+		display->setCursor(10, 20);
 		display->setTextSize(2);
 		display->setTextColor(WHITE);
 		display->println("Game Over");
@@ -121,12 +133,13 @@ void SI_StateMachine::tick() {
 		if(user->isAlive()==false){
 			currentState = game_over_st;
 		}
-		if(alienholder->allDead()){
-			currentState = level_increment_st;
-		}
 		if(alienholder->allDead() && level == 10){
 			currentState = victory_st;
 		}
+		else if(alienholder->allDead()){
+			currentState = level_increment_st;
+		}
+
 		break;
 
 		case level_increment_st:

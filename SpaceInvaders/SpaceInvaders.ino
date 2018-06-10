@@ -26,6 +26,8 @@ static const unsigned char PROGMEM SpaceInvaderLogo[]=
 SI_StateMachine *si_sm;
 
 void setup() {
+  ledArray_init();
+  ledArray_writeLeds(0);
   display = new Adafruit_SSD1306(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
   display->begin(SSD1306_SWITCHCAPVCC);
   // Serial.begin(9600);

@@ -54,6 +54,10 @@ BulletHandler::BulletHandler(Adafruit_SSD1306 * display, Bunker ** bunkers, Alie
 	shotCountUp = 0;
 }
 
+BulletHandler::~BulletHandler(){
+	alienShot->forceMove(0,70);
+	userShot->forceMove(0,-10);
+}
 void BulletHandler::moveBullets()
 {
 	if (userShot->get_y_pos() > -4) {
@@ -85,7 +89,7 @@ void BulletHandler::checkCollisions()
 	if (userShot->collided(bunker3)) {
 		userShot->onCollide(bunker3);
 	}
-	
+
 	if (alienShot->collided(bunker1)) {
 		alienShot->onCollide(bunker1);
 	}
@@ -112,7 +116,7 @@ void BulletHandler::fireAlienBullet()
 			Alien * fireAlien = pickAlien();
 			alienShot->forceMove(fireAlien->get_x_pos() + 5, fireAlien->get_y_pos() + 8);
 		}
-	
+
 		shotCountUp = 0;
 	}
 }

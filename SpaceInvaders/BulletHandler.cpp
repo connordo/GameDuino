@@ -64,6 +64,7 @@ void BulletHandler::moveBullets()
 		userShot->move(UP);
 	}
 	if (alienShot->get_y_pos() > -4) {
+		alienShot->animate();
 		alienShot->move(DOWN);
 	}
 }

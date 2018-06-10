@@ -19,6 +19,8 @@ private:
 	void checkCollisions();
 
 public:
+	int level;
+	int movementCounterMax;
 	Adafruit_SSD1306 * display;
 	Spaceship *user;
 	Bullet *userShot;
@@ -32,8 +34,9 @@ public:
 	enum SI_state {
 		init_st,
 		idle_st,
+		level_increment_st,
 		game_over_st,
-		vicotry_st
+		victory_st
 	}currentState;
 
 	SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display);

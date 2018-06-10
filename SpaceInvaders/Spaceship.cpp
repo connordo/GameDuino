@@ -17,9 +17,15 @@ Spaceship::Spaceship(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
 	bmp_width = 16;
 	speed = 1;
 	type = 's';
+	alive = true;
 }
 
 void Spaceship::explode()
 {
+	alive = false;
 	display->drawBitmap(x_pos, y_pos, getSpriteBmp(), bmp_width, height, BLACK);
+}
+
+bool Spaceship::isAlive(){
+	return alive;
 }

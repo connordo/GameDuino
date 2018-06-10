@@ -31,7 +31,8 @@ public:
 	int bulletIndex;
 	enum SI_state {
 		init_st,
-		idle_st
+		idle_st,
+		end_game_st
 	}currentState;
 
 	SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display);

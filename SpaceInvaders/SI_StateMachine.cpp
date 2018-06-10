@@ -6,6 +6,8 @@ void SI_StateMachine::checkCollisions()
 	bulletHandler->checkCollisions();
 }
 
+void(* resetFunc) (void) = 0; //declare reset function @ address 0
+
 SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display) {
 	this->display = display;
 	currentState = init_st;
@@ -21,12 +23,12 @@ SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display) {
 void SI_StateMachine::tick() {
 	//Mealey Actions
 	switch (currentState) {
-	case init_st:
+		case init_st:
 		user->draw();
 		// testbug->draw();
 		alienholder->initilizeAliens();
 		break;
-	case idle_st:
+		case idle_st:
 		// testbug->animate();
 		alienholder->iterateThroughAliens();
 		bulletHandler->fireAlienBullet();
@@ -35,21 +37,33 @@ void SI_StateMachine::tick() {
 		//	userShot->move(UP);
 		//}
 		break;
+		case end_game_st:
+		delay(500);
+		display->clearDisplay();
+		//game over screen
+		display->setCursor(10,10);
+		display->setTextSize(2);
+		display->setTextColor(WHITE);
+		display->println("Game Over");
+		display->display();
+		delay(5000);
+		resetFunc();  //call reset
+		break;
 	}
 
 	//Moore Actions
 	switch (currentState) {
-	case init_st:
+		case init_st:
 		currentState = idle_st;
 		break;
-	case idle_st:
+		case idle_st:
 		if (buttons_readAll() & BITMASK_BTN_LEFT) {
 			if (user->get_x_pos() > 0)
-				user->move(LEFT);
+			user->move(LEFT);
 		}
 		if (buttons_readAll() & BITMASK_BTN_RIGHT) {
 			if (user->get_x_pos() + user->get_width() < display->width())
-				user->move(RIGHT);
+			user->move(RIGHT);
 		}
 
 		if (buttons_readAll() & BITMASK_BTN_A) {
@@ -59,6 +73,11 @@ void SI_StateMachine::tick() {
 
 		}
 		checkCollisions();
+		if(user->isAlive()==false){
+			currentState = end_game_st;
+		}
+		break;
+		case end_game_st:
 		break;
 	}
 	display->display();

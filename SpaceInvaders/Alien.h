@@ -14,7 +14,6 @@ public:
 
   int currentSprite;
   int fireCounter;
-  int FireMax;
   int deathTimerCount;
 
   void animate();

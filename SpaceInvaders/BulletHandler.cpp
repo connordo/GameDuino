@@ -99,6 +99,10 @@ void BulletHandler::checkCollisions()
 	if (alienShot->collided(userShip)) {
 		alienShot->onCollide(userShip);
 	}
+
+	if (alienShot->collided(userShot)) {
+		alienShot->onCollide(userShot);
+	}
 }
 
 void BulletHandler::fireAlienBullet()

@@ -10,6 +10,11 @@ const unsigned char * AlienBullet::getSpriteBmp()
 	return alien_bullet_bmp;
 }
 
+void AlienBullet::explode()
+{
+
+}
+
 AlienBullet::AlienBullet(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos) :Bullet(display, init_x_pos, init_y_pos) {
 	height = 7;
 	width = 3;
@@ -31,6 +36,11 @@ void AlienBullet::onCollide(Entity * e)
 	}
 	break;
 	case 'b':
+	{
+		Bullet* bullet = (Bullet*)e;
+		bullet->forceMove(0, -10);
+	}
+	case 'c':
 	{
 		BunkerBlock * bunkerBlock = static_cast<BunkerBlock*>(e);
 		bunkerBlock->takeDamage();

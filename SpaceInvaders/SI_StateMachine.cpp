@@ -10,6 +10,7 @@ void SI_StateMachine::checkCollisions()
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display) {
+	movementCounterMax = 30;
 	this->display = display;
 	currentState = init_st;
 	user = new Spaceship(display, (128 / 2) - 4, 64 - 8);
@@ -19,7 +20,6 @@ SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display) {
 	bunker2 = new Bunker(display, 55, 45);
 	bunker3 = new Bunker(display, 100, 45);
 	bulletHandler = new BulletHandler(display, new Bunker*[3]{ bunker1, bunker2, bunker3 }, alienholder, user);
-	movementCounterMax = 30;
 	ledArray_writeLeds(0);
 	digitalWrite(LED1, HIGH);
 }

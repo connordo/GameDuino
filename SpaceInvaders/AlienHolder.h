@@ -17,4 +17,5 @@ public:
   AlienHolder(Adafruit_SSD1306 *display);
   void initilizeAliens();
   void iterateThroughAliens();
+  bool allDead();
 };

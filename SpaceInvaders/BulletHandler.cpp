@@ -6,7 +6,7 @@ Alien * BulletHandler::pickAlien()
 	int pickedIndex;
 	Alien* pickedAlien;
 	bool aliveAlien = false;
-	while (!aliveAlien) {
+	while (!aliveAlien && !alienHolder->allDead()) {
 		pickedIndex = random(0, alienHolder->get_arr_length());
 		pickedAlien = (Alien*)alienHolder->getEntities()[pickedIndex];
 		aliveAlien = pickedAlien->isAlive();

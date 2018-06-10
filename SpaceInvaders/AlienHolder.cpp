@@ -79,3 +79,15 @@ void AlienHolder::iterateThroughAliens(){
     }
   }
 }
+
+bool AlienHolder::allDead()
+{
+	bool dead = true;
+	for (int i = 0; i < array_length && dead; i++) {
+		Alien* alien = (Alien*)entities[i];
+		if (alien->isAlive()) {
+			dead = false;
+		}
+	}
+	return dead;
+}

@@ -1,7 +1,6 @@
 #include "Alien.h"
 #include "Arduino.h"
-#define RANDOMFIRELOW 100
-#define RANDOMFIREHIGH 500
+
 
 const unsigned char PROGMEM Alien::alien_up_bmp[]=
 {
@@ -31,7 +30,6 @@ Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
   animationCounter = 0;
   deathTimerCount = 0;
   fireCounter = 0;
-  FireMax = (int)random(RANDOMFIRELOW, RANDOMFIREHIGH);
   currentSprite = 1;
 }
 

@@ -30,7 +30,7 @@ unsigned const char * BunkerBlock::getSpriteBmp()
 }
 
 BunkerBlock::BunkerBlock(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos) : Entity(display, init_x_pos, init_y_pos) {
-	type = 'b';
+	type = 'c';
 	life = 3;
 	height = 4;
 	width = 4;

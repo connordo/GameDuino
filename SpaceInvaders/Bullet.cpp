@@ -37,11 +37,13 @@ void Bullet::onCollide(Entity * e)
 		alien->explode();
 	}
 	break;
-	case 'b':
+	case 'c':
 	{
 		BunkerBlock * bunkerBlock = static_cast<BunkerBlock*>(e);
 		bunkerBlock->takeDamage();
 	}
+	break;
+
 	default:
 		break;
 	}

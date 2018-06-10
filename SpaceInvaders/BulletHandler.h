@@ -6,7 +6,7 @@
 #include "Bunker.h"
 #include "AlienHolder.h"
 #include "Spaceship.h"
-#define SHOTRATE 35
+#define SHOTRATE 25
 #define ALIEN_ROW_LEN 7
 
 class BulletHandler {

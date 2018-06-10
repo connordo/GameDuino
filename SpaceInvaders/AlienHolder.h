@@ -6,15 +6,16 @@
 #include <Adafruit_SSD1306.h>
 
 #define ALIENCOUNT 14
-#define MOVEMENT_COUNTER_MAX 30
+//#define MOVEMENT_COUNTER_MAX 30
 
 class AlienHolder: public EntityGroup{
 private:
   Adafruit_SSD1306 *display;
+  int movementCounterMax;
   int movementCounter;
   int directionOfMovement; //positive or negative
 public:
-  AlienHolder(Adafruit_SSD1306 *display);
+  AlienHolder(Adafruit_SSD1306 *display, int moveDelay);
   void initilizeAliens();
   void iterateThroughAliens();
   bool allDead();

@@ -1,7 +1,8 @@
 #include "AlienHolder.h"
 
-AlienHolder::AlienHolder(Adafruit_SSD1306 *display) {
+AlienHolder::AlienHolder(Adafruit_SSD1306 *display, int moveDelay) {
   this->display = display;
+  movementCounterMax = moveDelay;
   array_length = ALIENCOUNT;
   entities = new Entity*[ALIENCOUNT]{
     new Alien(display, 0, 0),
@@ -35,7 +36,7 @@ void AlienHolder::initilizeAliens(){
 }
 
 void AlienHolder::iterateThroughAliens(){
-  if(movementCounter++ >= MOVEMENT_COUNTER_MAX){
+  if(movementCounter++ >= movementCounterMax){
     movementCounter = 0;
     if (directionOfMovement > 0 && (x_pos + width) < 127){
       for(int i = 0; i < ALIENCOUNT; i++){

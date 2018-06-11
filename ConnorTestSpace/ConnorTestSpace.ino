@@ -64,10 +64,17 @@ static const unsigned char PROGMEM testy[]=
 {
 0b00000100, 0b00000000, 0b00001110, 0b00000000, 0b00001110, 0b00000000, 0b00001110, 0b00000000, 0b01111111, 0b11000000, 0b11111111, 0b11100000, 0b01101110, 0b11000000, 0b00101010, 0b10000000,
 };
+
+//image width:  8
+//image height: 11
+static const unsigned char PROGMEM MrGameDuino[]=
+{
+0b00111000, 0b00111110, 0b00101000, 0b00111000, 0b01111100, 0b10111010, 0b10111010, 0b10101010, 0b00101000, 0b00101000, 0b01101100,
+};
 void setup() {
   display.begin(SSD1306_SWITCHCAPVCC);
   display.clearDisplay();
-  display.drawBitmap(0, 0, testy, 16, 8, WHITE);
+  display.drawBitmap(0, 0, MrGameDuino, 8, 11, WHITE);
   display.display();
 }
 

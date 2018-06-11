@@ -2,6 +2,8 @@
 #include <buttons.h>
 #include "ledArray.h"
 
+#define SPEAKER 24
+
 void SI_StateMachine::checkCollisions()
 {
 	bulletHandler->checkCollisions();
@@ -10,6 +12,7 @@ void SI_StateMachine::checkCollisions()
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 SI_StateMachine::SI_StateMachine(Adafruit_SSD1306 *display) {
+	pinMode(SPEAKER, OUTPUT);
 	level = 1;
 	movementCounterMax = 30;
 	this->display = display;
@@ -91,6 +94,14 @@ void SI_StateMachine::tick() {
 		display->setTextColor(WHITE);
 		display->println("Game Over");
 		display->display();
+		tone(SPEAKER, 1000, 200);
+		delay(200);
+		tone(SPEAKER, 700, 200);
+		delay(200);
+		tone(SPEAKER, 400, 200);
+		delay(200);
+		tone(SPEAKER, 200, 200);
+
 		delay(5000);
 		resetFunc();  //call reset
 		break;
@@ -103,6 +114,13 @@ void SI_StateMachine::tick() {
 		display->setTextColor(WHITE);
 		display->println(" Victory!");
 		display->display();
+		tone(SPEAKER, 200, 200);
+		delay(200);
+		tone(SPEAKER, 400, 200);
+		delay(200);
+		tone(SPEAKER, 700, 200);
+		delay(200);
+		tone(SPEAKER, 1000, 200);
 		delay(5000);
 		resetFunc();  //call reset
 		break;
@@ -124,7 +142,7 @@ void SI_StateMachine::tick() {
 		}
 
 		if (buttons_readAll() & BITMASK_BTN_A) {
-
+			tone(SPEAKER, 880, 50);
 			//userShot->forceMove(user->get_x_pos() + 5, user->get_y_pos() - 4);
 			bulletHandler->shootUserBullet();
 

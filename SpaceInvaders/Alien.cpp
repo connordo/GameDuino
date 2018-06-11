@@ -1,6 +1,6 @@
 #include "Alien.h"
 #include "Arduino.h"
-
+#define SPEAKER 24
 
 const unsigned char PROGMEM Alien::alien_up_bmp[]=
 {
@@ -31,6 +31,7 @@ Alien::Alien(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos)
   deathTimerCount = 0;
   fireCounter = 0;
   currentSprite = 1;
+  pinMode(SPEAKER, OUTPUT);
 }
 
 void Alien::move(int d){
@@ -53,6 +54,8 @@ void Alien::move(int d){
 
 void Alien::explode()
 {
+  tone(SPEAKER, 100, 200);
+
   display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, BLACK);
   exploding = true;
   display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, WHITE);

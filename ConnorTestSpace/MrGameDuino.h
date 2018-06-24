@@ -15,7 +15,6 @@ public:
   static const unsigned char PROGMEM left_2[];
 
   int currentSprite;
-  int fireCounter;
   int deathTimerCount;
 
   void animate();

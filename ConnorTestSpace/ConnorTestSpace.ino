@@ -13,29 +13,30 @@
 #define OLED_DC    11
 #define OLED_CS    12
 #define OLED_RESET 13
-Adafruit_SSD1306 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+Adafruit_SSD1306 *display;
 
 //image width:  8
 //image height: 11
-static const unsigned char PROGMEM MrGameDuino[]=
-{
-  0b00111000, 0b00111110, 0b00101000, 0b00111000, 0b01111100, 0b10111010, 0b10111010, 0b10101010, 0b00101000, 0b00101000, 0b01101100,
-};
 
 MrGameDuino *user;
 
 void setup() {
-  display.begin(SSD1306_SWITCHCAPVCC);
-  display.clearDisplay();
+  display = new Adafruit_SSD1306(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+  display->begin(SSD1306_SWITCHCAPVCC);
+  display->clearDisplay();
   user = new MrGameDuino(display, 20, 20);
-  display.display();
+  user->draw();
+  display->display();
+  // while(1);
 }
 
 void loop() {
-  if(buttons_readAll() & BTN_RIGHT){
+  if(buttons_readAll() & BITMASK_BTN_RIGHT){
     user->move(3);
   }
-  if(buttons_readAll() & BTN_LEFT){
+  if(buttons_readAll() & BITMASK_BTN_LEFT){
     user->move(2);
   }
+  user->animate();
+  display->display();
 }

@@ -17,6 +17,7 @@ Entity::Entity(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos){
 
 void Entity::move(MoveDir d){
   display->drawBitmap(x_pos, y_pos, getSpriteBmp(), width, height, BLACK);
+	display->fillRect(x_pos, y_pos, width+1, height, BLACK);
   switch(d){
     case UP:
     display->drawBitmap(x_pos, y_pos-=speed, getSpriteBmp(), width, height, WHITE);

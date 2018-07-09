@@ -21,4 +21,5 @@
 // public:
 //   PhysicalEntity();
 //   void applyPhysics();
+//   void applyForce();
 // }

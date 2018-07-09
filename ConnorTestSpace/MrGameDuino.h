@@ -7,6 +7,7 @@ class MrGameDuino: public Entity {
 private:
 
 public:
+  static const unsigned char PROGMEM MrGameDuinofullmap[];
   static const unsigned char PROGMEM idle_1[];
   static const unsigned char PROGMEM idle_2[];
   static const unsigned char PROGMEM right_1[];
@@ -22,7 +23,8 @@ public:
   void move(int d);
   void explode();
   const unsigned char* getSpriteBmp();
-
+  unsigned char* SpriteMapParser(int index);
+  
   MrGameDuino(Adafruit_SSD1306 *display, int init_x_pos, int init_y_pos);
   bool isAlive();
 };

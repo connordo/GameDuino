@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include <Adafruit_SSD1306.h>
 
 class GameDuino
 {

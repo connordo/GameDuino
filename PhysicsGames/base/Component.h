@@ -1,8 +1,18 @@
 #pragma once
 class Component
 {
-private:
-	class Actor* owner;
+protected:
+	class Actor {
+	public:
+		struct Position {
+			int x;
+			int y;
+		} getPosition();
+		struct Size {
+			int h;
+			int w;
+		} getSize();
+	} *owner;
 public:
 	Component(class Actor* owner);
 	~Component();

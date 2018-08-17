@@ -13,10 +13,10 @@ protected:
 	const unsigned char* getCurrentSprite() override;
 
 public:
-	enum {
+	enum sprite_type{
 		ALIEN_UP, ALIEN_DOWN, DEATH, SPACESHIP
 	};
-	Example_SC(class Actor* owner, int startSprite, int numOfSprites, int animFrames, int bmpWidth);
+	Example_SC(Actor* owner, sprite_type startSprite, int numOfSprites, int animFrames, int bmpWidth);
 	~Example_SC();
 };
 

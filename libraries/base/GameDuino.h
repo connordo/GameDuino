@@ -1,5 +1,8 @@
 #pragma once
 #include "Actor.h"
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #define OLED_MOSI   9 //SDA on the Board
 #define OLED_CLK   10 //SCL on the Board
@@ -15,7 +18,7 @@ protected:
 	
 	enum state { INIT, LOOPING, END } game_state;
 	static Adafruit_SSD1306* display;
-	
+	static Adafruit_SSD1306 * initDisplay();
 
 	/**
 	* Clear screen, update each actor, update physics, draw each actor & object

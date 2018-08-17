@@ -36,7 +36,7 @@ const unsigned char* Example_SC::getCurrentSprite()
 	}
 }
 
-Example_SC::Example_SC(class Actor* owner, int startSprite, int numOfSprites, int animFrames, int bmpWidth)
+Example_SC::Example_SC(class Actor* owner, sprite_type startSprite, int numOfSprites, int animFrames, int bmpWidth)
 	:SpriteComponent(owner, startSprite, numOfSprites, animFrames, bmpWidth)
 {
 }

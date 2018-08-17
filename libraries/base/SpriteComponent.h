@@ -1,5 +1,8 @@
 #pragma once
 #include "Component.h"
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #define OLED_MOSI   9 //SDA on the Board
 #define OLED_CLK   10 //SCL on the Board
@@ -11,7 +14,8 @@ class SpriteComponent :
 	public Component
 {
 private:
-	static Adafruit_SSD1306 * display;	
+	static Adafruit_SSD1306 * display;
+	static Adafruit_SSD1306 * initDisplay();
 protected:
 	int animFrames;
 	int startSprite;

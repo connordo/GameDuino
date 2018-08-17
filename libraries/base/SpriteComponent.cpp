@@ -1,7 +1,14 @@
 #include "SpriteComponent.h"
 #include "Actor.h"
 
-Adafruit_SSD1306* SpriteComponent::display = new Adafruit_SSD1306(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+Adafruit_SSD1306 * SpriteComponent::display = SpriteComponent::initDisplay();
+
+Adafruit_SSD1306 * SpriteComponent::initDisplay()
+{
+	Adafruit_SSD1306 * new_display = new Adafruit_SSD1306(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+	new_display->begin(SSD1306_SWITCHCAPVCC);
+	return new_display;
+}
 
 SpriteComponent::SpriteComponent(Actor * owner, int startSprite, int numOfSprites, int animFrames, int bmpWidth):Component(owner)
 {

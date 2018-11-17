@@ -642,6 +642,7 @@ void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y,
     startWrite();
     for(int16_t j=0; j<h; j++, y++) {
         for(int16_t i=0; i<w; i++ ) {
+            // if(bitmap[j * w + i]!=0xF81F) //added by Connor
             writePixel(x+i, y, pgm_read_word(&bitmap[j * w + i]));
         }
     }
